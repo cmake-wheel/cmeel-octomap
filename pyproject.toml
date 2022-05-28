@@ -1,0 +1,16 @@
+[project]
+name = "cmeel-octomap"
+version = "1.9.9"
+description = "cmeel distribution for OctoMap, An Efficient Probabilistic 3D Mapping Framework Based on Octrees"
+readme = "octomap/README.md"
+requires-python = ">= 3.8"
+license = "BSD-3-Clause"
+
+[project.urls]
+homepage = "https://github.com/cmake-wheel/cmeel-octomap"
+repository = "https://github.com/cmake-wheel/cmeel-octomap.git"
+
+[build-system]
+requires = ["cmeel[build]"]
+build-backend = "cmeel.build"
+source = "octomap/octomap"
