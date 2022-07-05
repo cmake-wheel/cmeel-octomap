@@ -14,5 +14,3 @@ repository = "https://github.com/cmake-wheel/cmeel-octomap.git"
 requires = ["cmeel[build]"]
 build-backend = "cmeel.build"
 source = "octomap/octomap"
-# tests not OK in // : https://github.com/OctoMap/octomap/pull/374
-run_tests = false
