@@ -16,28 +16,32 @@ jobs:
         build: ["cp37-*", "cp38-*", "cp39-*", "cp310-*", "cp311-*", "pp37-*", "pp38-*", "pp39-*"]
         include:
           - arch: "universal2"
+            os: "macos"
             build: "cp38-*"
           - arch: "universal2"
+            os: "macos"
             build: "cp39-*"
           - arch: "universal2"
+            os: "macos"
             build: "cp310-*"
           - arch: "universal2"
+            os: "macos"
             build: "cp311-*"
           - arch: "aarch64"
+            os: "ubuntu"
             build: "cp37-manylinux*"
           - arch: "aarch64"
+            os: "ubuntu"
             build: "cp38-manylinux*"
           - arch: "aarch64"
+            os: "ubuntu"
             build: "cp39-manylinux*"
           - arch: "aarch64"
+            os: "ubuntu"
             build: "cp310-manylinux*"
           - arch: "aarch64"
-            build: "cp311-manylinux*"
-        exclude:
-          - arch: "universal2"
             os: "ubuntu"
-          - arch: "aarch64"
-            os: "macos"
+            build: "cp311-manylinux*"
     steps:
       - uses: actions/checkout@v3
         with:
@@ -46,7 +50,7 @@ jobs:
         with:
           python-version: "3.10"
       - name: Set up QEMU
-        if: matrix.arch == "aarch64"
+        if: matrix.arch == 'aarch64'
         uses: docker/setup-qemu-action@v2
         with:
           platforms: all
