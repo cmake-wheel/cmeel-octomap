@@ -10,8 +10,10 @@ license = "BSD-3-Clause"
 homepage = "https://github.com/cmake-wheel/cmeel-octomap"
 repository = "https://github.com/cmake-wheel/cmeel-octomap.git"
 
+[tool.cmeel]
+build-number = 1
+source = "octomap/octomap"
+
 [build-system]
 requires = ["cmeel[build]"]
 build-backend = "cmeel.build"
-build-number = 1
-source = "octomap/octomap"
