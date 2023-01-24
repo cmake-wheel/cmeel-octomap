@@ -11,6 +11,7 @@ homepage = "https://github.com/cmake-wheel/cmeel-octomap"
 repository = "https://github.com/cmake-wheel/cmeel-octomap.git"
 
 [tool.cmeel]
+build-number = 1
 source = "octomap/octomap"
 
 [build-system]
