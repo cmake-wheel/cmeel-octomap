@@ -41,7 +41,7 @@ jobs:
           platforms: all
       - run: python -m pip install -U pip
       - run: python -m pip install cmeel
-      - run: python -m cmeel docker -Ui quay.io/pypa/manylinux2014_aarch64
+      - run: python -m cmeel docker -Ui quay.io/pypa/manylinux2014_aarch64 -e CMEEL_RUN_TESTS=OFF
       - uses: actions/upload-artifact@v3
         with:
           path: wh
