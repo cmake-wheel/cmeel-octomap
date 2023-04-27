@@ -1,3 +1,7 @@
+[build-system]
+requires = ["cmeel[build]"]
+build-backend = "cmeel.build"
+
 [project]
 name = "cmeel-octomap"
 version = "1.9.8.1"
@@ -13,7 +17,3 @@ repository = "https://github.com/cmake-wheel/cmeel-octomap.git"
 [tool.cmeel]
 build-number = 2
 source = "octomap/octomap"
-
-[build-system]
-requires = ["cmeel[build]"]
-build-backend = "cmeel.build"
