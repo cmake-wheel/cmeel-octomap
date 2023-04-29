@@ -1,13 +1,13 @@
 [build-system]
-requires = ["cmeel[build]"]
 build-backend = "cmeel.build"
+requires = ["cmeel[build]"]
 
 [project]
-name = "cmeel-octomap"
-version = "1.9.8.1"
 description = "cmeel distribution for OctoMap, An Efficient Probabilistic 3D Mapping Framework Based on Octrees"
-requires-python = ">= 3.7"
 license = "BSD-3-Clause"
+name = "cmeel-octomap"
+requires-python = ">= 3.7"
+version = "1.9.8.1"
 
 [project.urls]
 homepage = "https://github.com/cmake-wheel/cmeel-octomap"
@@ -17,3 +17,6 @@ repository = "https://github.com/cmake-wheel/cmeel-octomap.git"
 build-number = 4
 py3-none = true
 source = "octomap/octomap"
+
+[tool.tomlsort]
+all = true
