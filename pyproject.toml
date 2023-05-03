@@ -14,7 +14,7 @@ homepage = "https://github.com/cmake-wheel/cmeel-octomap"
 repository = "https://github.com/cmake-wheel/cmeel-octomap.git"
 
 [tool.cmeel]
-build-number = 4
+build-number = 5
 py3-none = true
 source = "octomap/octomap"
 
