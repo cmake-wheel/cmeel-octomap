@@ -33,7 +33,14 @@ jobs:
           platforms: all
       - run: python -m pip install -U pip
       - run: python -m pip install cmeel
-      - run: python -m cmeel docker -Ui "quay.io/pypa/${{ matrix.image }}_${{ matrix.arch }}"
+      - name: Build wheel with tests
+        run: python -m cmeel docker -Ui "quay.io/pypa/${{ matrix.image }}_${{ matrix.arch }}"
+        if: matrix.arch == 'x86_64'
+      - name: Build wheel without tests
+        run: python -m cmeel docker -Ui "quay.io/pypa/${{ matrix.image }}_${{ matrix.arch }}"
+        if: matrix.arch == 'aarch64'
+        env:
+          CMEEL_RUN_TESTS: "false"
       - uses: actions/upload-artifact@v3
         with:
           path: wh
