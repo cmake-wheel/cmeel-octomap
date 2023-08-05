@@ -23,21 +23,17 @@ jobs:
       - uses: actions/checkout@v3
         with:
           submodules: 'true'
-      - uses: actions/setup-python@v4
-        with:
-          python-version: "3.11"
       - name: Set up QEMU
         if: matrix.arch == 'aarch64'
         uses: docker/setup-qemu-action@v2
         with:
           platforms: all
-      - run: python -m pip install -U pip
-      - run: python -m pip install cmeel
+      - run: pipx install cmeel
       - name: Build wheel with tests
-        run: python -m cmeel docker -Ui "quay.io/pypa/${{ matrix.image }}_${{ matrix.arch }}"
+        run: cmeel docker -Ui "quay.io/pypa/${{ matrix.image }}_${{ matrix.arch }}"
         if: matrix.arch == 'x86_64'
       - name: Build wheel without tests
-        run: python -m cmeel docker -Ui "quay.io/pypa/${{ matrix.image }}_${{ matrix.arch }}"
+        run: cmeel docker -Ui "quay.io/pypa/${{ matrix.image }}_${{ matrix.arch }}"
         if: matrix.arch == 'aarch64'
         env:
           CMEEL_RUN_TESTS: "false"
@@ -66,12 +62,9 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
-      - uses: actions/setup-python@v4
-        with:
-          python-version: "3.11"
       - uses: actions/download-artifact@v3
-      - run: python -m pip install twine
-      - run: python -m twine upload -u __token__ -p "${{ secrets.PYPI_TOKEN }}" artifact/cmeel_octomap*.whl
+      - run: pipx install twine
+      - run: twine upload -u __token__ -p "${{ secrets.PYPI_TOKEN }}" artifact/cmeel_octomap*.whl
       - run: echo "TAG=${GITHUB_REF#refs/tags/}" >> $GITHUB_ENV
       - run: gh release create -t "Release ${{ env.TAG}}" "${{ env.TAG }}" artifact/cmeel_octomap*.whl
         env:
