@@ -1,12 +1,12 @@
 [build-system]
-build-backend = "cmeel.build"
+build-backend = "cmeel"
 requires = ["cmeel[build]"]
 
 [project]
 description = "cmeel distribution for OctoMap, An Efficient Probabilistic 3D Mapping Framework Based on Octrees"
 license = "BSD-3-Clause"
 name = "cmeel-octomap"
-requires-python = ">= 3.7"
+requires-python = ">= 3.8"
 version = "1.9.8.2"
 
 [project.urls]
