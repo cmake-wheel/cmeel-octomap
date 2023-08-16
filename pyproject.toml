@@ -15,7 +15,7 @@ repository = "https://github.com/cmake-wheel/cmeel-octomap.git"
 
 [tool.cmeel]
 build-number = 2
-py3-none = true
+has-sitelib = false
 source = "octomap/octomap"
 
 [tool.tomlsort]
