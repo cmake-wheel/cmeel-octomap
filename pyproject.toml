@@ -12,6 +12,7 @@ version = "1.9.8.2"
 [project.urls]
 homepage = "https://github.com/cmake-wheel/cmeel-octomap"
 repository = "https://github.com/cmake-wheel/cmeel-octomap.git"
+upstream = "https://github.com/octomap/octomap"
 
 [tool.cmeel]
 build-number = 3
