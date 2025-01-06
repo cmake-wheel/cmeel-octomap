@@ -44,6 +44,7 @@ jobs:
           CMEEL_RUN_TESTS: "false"
       - uses: actions/upload-artifact@v4
         with:
+          name: "artifact-${{ matrix.image }}-${{ matrix.arch }}"
           path: wh
 
   macos:
@@ -55,12 +56,13 @@ jobs:
           submodules: 'true'
       - uses: actions/setup-python@v5
         with:
-          python-version: "3.11"
+          python-version: "3.12"
       - run: python -m pip install -U pip
       - run: python -m pip wheel -vw wh .
       - uses: actions/upload-artifact@v4
         with:
-          path: wh
+          name: macos
+          path: wh/cmeel_octomap*
 
   sdist:
     runs-on: ubuntu-latest
@@ -70,7 +72,7 @@ jobs:
           submodules: 'true'
       - uses: actions/setup-python@v5
         with:
-          python-version: 3.11
+          python-version: 3.12
       - name: setup
         run: |
           python -m pip install -U pip
@@ -79,6 +81,7 @@ jobs:
         run: python -m build -nso dist .
       - uses: actions/upload-artifact@v4
         with:
+          name: sdist
           path: dist
 
   release:
@@ -95,9 +98,11 @@ jobs:
           git verify-tag --raw ${{ github.ref_name }} 2>&1
           | grep -q 'VALIDSIG 9B1A79065D2F2B806C8A5A1C7D2ACDAF4653CF28'
       - uses: actions/download-artifact@v4
-      - run: pipx install twine
-      - run: twine upload -u __token__ -p "${{ secrets.PYPI_TOKEN }}" artifact/cmeel_octomap*.whl
-      - run: twine upload -u __token__ -p "${{ secrets.PYPI_TOKEN }}" artifact/cmeel_octomap*.tar.gz || true
+      - run: mkdir dist && mv sdist/* artifact*/* macos/* dist
+      - name: Publish package distributions to PyPI
+        uses: pypa/gh-action-pypi-publish@release/v1
+        with:
+          skip-existing: true
       - run: echo "TAG=${GITHUB_REF#refs/tags/}" >> $GITHUB_ENV
       - run: gh release create -t "Release ${{ env.TAG}}" "${{ env.TAG }}" artifact/cmeel_octomap*.{whl,tar.gz}
         env:
