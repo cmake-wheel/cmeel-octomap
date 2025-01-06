@@ -15,7 +15,7 @@ repository = "https://github.com/cmake-wheel/cmeel-octomap.git"
 upstream = "https://github.com/octomap/octomap"
 
 [tool.cmeel]
-build-number = 3
+build-number = 4
 has-sitelib = false
 source = "octomap/octomap"
 
