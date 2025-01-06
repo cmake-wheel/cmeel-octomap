@@ -45,7 +45,7 @@ jobs:
       - uses: actions/upload-artifact@v4
         with:
           name: "artifact-${{ matrix.image }}-${{ matrix.arch }}"
-          path: wh
+          path: wh/cmeel_octomap*
 
   macos:
     name: "macos"
@@ -84,7 +84,7 @@ jobs:
       - uses: actions/upload-artifact@v4
         with:
           name: sdist
-          path: dist
+          path: dist/cmeel_octomap*
 
   release:
     needs: ["linux", "macos", "sdist"]
