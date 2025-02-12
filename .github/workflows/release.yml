@@ -107,7 +107,7 @@ jobs:
           merge-multiple: true
           path: dist
       - run: echo "TAG=${GITHUB_REF#refs/tags/}" >> $GITHUB_ENV
-      - run: gh release create -t "Release ${{ env.TAG}}" "${{ env.TAG }}" dist/cmeel_tinyxml2*.{whl,tar.gz}
+      - run: gh release create -t "Release ${{ env.TAG}}" "${{ env.TAG }}" dist/cmeel_octomap*.{whl,tar.gz}
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       - name: Publish package distributions to PyPI
