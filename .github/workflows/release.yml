@@ -107,7 +107,7 @@ jobs:
         run: python -m pip install dist/$(echo "$PROJECT" | tr - _)*.tar.gz
 
   release:
-    needs: ["test", "sdist"]
+    needs: ["test-wheel", "test-sdist"]
     if: ${{ startsWith(github.ref, 'refs/tags/v') }}
     runs-on: ubuntu-24.04
     environment: release
